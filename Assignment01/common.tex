@@ -1,0 +1,52 @@
+\usepackage{version}
+
+\usepackage{makeidx}         % allows index generation
+\usepackage{graphicx}        % standard LaTeX graphics tool
+                             % when including figure files
+\usepackage{subfigure}
+\usepackage{multicol}        % used for the two-column index
+\usepackage[bottom]{footmisc}% places footnotes at page bottom
+\usepackage{amstext,amssymb,amsmath}  % I included these - AKG
+\usepackage{url}
+\usepackage{color}
+\usepackage{multirow}
+\usepackage{booktabs}
+
+% example use of listings (font is fixed-width):
+% \begin{lstlisting}[mathescape,basicstyle=\fontfamily{lmvtt}\selectfont]
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily}
+
+%-------------------------------------------------------------------------------
+% Decrease margins
+%-------------------------------------------------------------------------------
+\oddsidemargin0cm
+\topmargin-2cm
+\textwidth16.5cm
+\textheight23.5cm  
+
+%-------------------------------------------------------------------------------
+% this makes list spacing much better.
+%-------------------------------------------------------------------------------
+\newenvironment{tightenumerate}{
+\begin{enumerate}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{enumerate}
+}
+
+%-------------------------------------------------------------------------------
+% this makes list spacing much better.
+%-------------------------------------------------------------------------------
+\newenvironment{tightitemize}{
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{itemize}
+}
+
+\newcommand{\myspace}{\vspace{4 mm}}
+\newcommand{\soln}{\paragraph{Solution:}}
+

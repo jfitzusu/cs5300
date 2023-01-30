@@ -1,0 +1,196 @@
+\documentclass{article}
+
+\input{common}
+
+\renewcommand{\tt}[1]{\texttt{#1}}
+\newcommand{\kc}{$^*$}
+\renewcommand{\not}{$^\wedge$}
+\newcommand{\pc}{$^+$}
+\newcommand{\e}{$\epsilon$}
+
+\includeversion{version:soln}
+
+\begin{document}
+
+\begin{flushleft}
+Homework - Chapter 1 \\
+CS 5300 %\\
+
+\end{flushleft}
+
+\begin{enumerate}
+\item (6 points) What is the difference between a compiler and an interpreter?
+  \begin{version:soln}
+    \soln A compiler translates the source language into the target language which (if executable) can be used to translate inputs into outputs. An interpreter takes inputs and the source language, and uses both to produce outputs. Basically, a compiler runs before you execute the code, and an interpreter runs concurrently with the code. 
+  \end{version:soln}
+  
+\myspace
+\item (6 points) According to the book, what are the advantages of
+  \begin{tightenumerate}
+    \item a compiler over an interpreter?
+    \item an interpreter over a compiler?
+  \end{tightenumerate}
+  \begin{version:soln}
+    \soln A compiler will usually execute the program faster (overall) because it only has to be compiled once, and the end result is (usually) machine code that can be optimized before the program is even run, while an interpreter executes code line by line, at run time, requiring compilation every time. An interpreter, for this very same reason, can be easier to debug and interact with, because it can stop at any time. 
+  \end{version:soln}
+
+\myspace
+\item (6 points) Discuss the portability across computers of compiled vs. interpreted programs.
+  \begin{version:soln}
+    \soln Compiled programs are portable to whatever operating system/architecture they were compiled on. Interpreted languages are as portable as their interpreter. That is, if there exists a build of the interpreter for the operating system and architecture you desire to run the program on, you can run the program, regardless of the operating system/architecture it was originally developed on. 
+  \end{version:soln}
+
+\myspace
+\item (6 points) Strictly speaking, Java is an interpreted language. Discuss how it has elements of being a compiled language.
+  \begin{version:soln}
+    \soln Java is somewhat of a hybrid language. The first step for Java programs is to be compiled into bytecode, a type of machine code specific to the JVM. Then, at run time, the bytecode is interpreted by the JVM using just-in-time compiler (interpreter). So it can benefit from some of the benefits of compilation (e.g. early optimization) but not all (e.g. reduced run time overhead). 
+  \end{version:soln}
+
+\myspace
+\item (6 points) The C compiler \textit{gcc} has an \tt{-S} option that will output assembly code before the assembler is run. Why might someone want to do this? Give at least two reasons.
+  \begin{version:soln}
+    \soln 1. Assembly code is easier to generate, and it's easier to read and debug than machine code. 2. This could also let you see just how the compiler's working, and how to optimize your code for the compiler. 
+  \end{version:soln}
+
+\myspace
+\item (6 points) If id2 has a value of 8 and id3 has a value of 12, after running the following code, what will be in registers R1 and R2?
+\begin{lstlisting}
+LDF R1, id2
+LDF R2, id3
+ADDF R1, R1, R2
+\end{lstlisting}
+  \begin{version:soln}
+    \soln R1: 20. R2: 12.
+  \end{version:soln}
+
+\myspace
+\item (6 points) The assembler will fail on this assembly code. Why?
+\begin{lstlisting}
+LDF R1, id2
+LDF R2, id3
+ADDF R1, id2, R2
+\end{lstlisting}
+  \begin{version:soln}
+    \soln ADDF adds the values of two registers. In this case, id2 is not a valid register, but rather an address with a value stored in it, making it an ineligible argument? for the ADDF operator.   
+  \end{version:soln}
+
+\myspace
+\item (6 points) If id5 is 2 and id7 is 9, what will be in id3 after running this code?
+\begin{lstlisting}
+LDF R1, id7
+LDF R2, id5
+ADDF R1, R1, R2
+MULF R1, R2, #3.0
+STF id3, R1
+\end{lstlisting}
+  \begin{version:soln}
+    \soln 6.0
+  \end{version:soln}
+
+\myspace
+\item (6 points) Which of the following terms apply to Javascript? Which apply to Python? \\
+a)~imperative b)~declarative c)~von Neumann d)~object-oriented e)~third-generation f)~fourth-generation g)~scripting
+  \begin{version:soln}
+    \soln Java: a, c, d, e. Python: a, c, d, e, g.
+  \end{version:soln}
+
+\myspace
+\item (5 points) C is not considered an object-oriented language, yet it has structs, which are kind of like objects. Why is it not object-oriented?
+  \begin{version:soln}
+    \soln The two key ideas of object orientation are data abstraction and inheritance. Structs can abstract data, but they can't be used to allow inheritance of properties (in C), thus C is not object oriented. 
+  \end{version:soln}
+
+\myspace
+\item (6 points) Give three examples of programs for which optimization that changes the behavior of the program would be very, very bad.
+  \begin{version:soln}
+    \soln The first example I can think of would be in code that runs scientific equipment. In this case, you want to be as accurate as possible, and if the optimization happened to introduce error into the code, you could end up wasting thousands of dollars on a now worthless experiment. Another example could be when running large scale mathematical operations, such as calculating the eigenvalues of a matrix. Calculations like this can get very expensive, as matrices can be very large. If the behavior of the code is changed, you could end up wasting massive amounts of CPU time. A final example could be the code for a pacemaker or other medical device. If a pacemaker doesn't properly stimulate the heart at the right times, the owner could have a heart attack and even die. That means you want the code to work exactly as written, and don't want any changes due to optimization.  
+  \end{version:soln}
+
+\myspace
+\item (5 points) Give an example of a program for which optimization that changes the behavior of the program might not be so bad.
+  \begin{version:soln}
+    \soln I'd say that for something like a video game optimization that changes the behavior of the program might not be that bad. It might just lead to a small bug or glitch, or even just a single pixel out of place for a second or two. Overall, the impact on the game would likely be minimal, unless the behavior of a core system was changed. Overall, it might be better for the game, as the increased performance could outweigh the problems caused by behavioral changes.   
+  \end{version:soln}
+
+\myspace
+\item (8 points) Given the following blocks in a C++ program, create a table like figure 1.11 in the textbook.
+
+\includegraphics[width=.4\textwidth]{blocks.pdf}
+
+\begin{tabular}{c|c}
+\toprule
+Declaration & Scope \\
+\midrule
+\tt{int b = 1;} & B1 - B2\\
+\tt{int a = 2;} &  B2 - B4\\
+\tt{int b = 2;} & B2 - B3 - B4\\
+\tt{int b = 3;} & B3\\
+\tt{int a = 4;} & B4 - B5\\
+\tt{int b = 4;} & B4\\
+\tt{int a = 5;} & B5\\
+\bottomrule
+\end{tabular}
+  \begin{version:soln}
+    \soln 
+  \end{version:soln}
+
+\myspace
+%\newpage
+\item (8 points) For the following block-structured C code, indicate the values assigned to $w, x, y,$ and $z$.
+\begin{lstlisting}[language=C]
+int w, x, y, z;
+int i = 5;
+int j = 8;
+{ int i = 4;
+  j = 9;
+  w = j - i;
+}
+x = j - i;
+{ int j = 10;
+  y = j - i;
+  i = 3;
+}
+z = j - i;
+\end{lstlisting}
+  \begin{version:soln}
+    \soln w: 5. x: 4. y: 5. z: 6.
+  \end{version:soln}
+
+\myspace
+\newpage
+\item (8 points) For the following block-structured C code, indicate the values assigned to $w, x, y,$ and $z$.
+\begin{lstlisting}[language=C]
+int w, x, y, z;
+int i = 2;
+int j = 5;
+{ int i = 3;
+  w = i + j;
+}
+x = i + j;
+{ int j = 9;
+  i = 7;
+  y = i + j;
+  { i = 6;
+  }
+}
+z = i + j;
+\end{lstlisting}
+  \begin{version:soln}
+    \soln  w: 8. x: 7. y: 15. z: 11.
+  \end{version:soln}
+
+\myspace
+\item (6 points) What is printed by the following C code?
+\begin{lstlisting}[language=C]
+#define a (x+3)
+int x = 4;
+void b() { x = a-1; printf("%d,", x); }
+void c() { int x = 1; printf("%d\n", a); }
+void main() { b(); c(); }
+\end{lstlisting}
+  \begin{version:soln}
+    \soln 6,4 
+  \end{version:soln}
+
+\end{enumerate}
+\end{document}
